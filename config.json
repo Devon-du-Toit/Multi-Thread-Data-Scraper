@@ -1,0 +1,16 @@
+{
+  "url_column": "image_url",
+  "output_root": "./data",
+  "csv_file_list": [
+    "./input/exampl1.csv",
+    "./input/exampl2.csv",
+    "./input/example3.csv"
+  ],
+  "max_downloads": 5500,
+  "download_structure": "flat",
+  "timeout": 10,
+  "retry_attempts": 3,
+  "concurrent_workers": 4,
+  "log_level": "INFO",
+  "proxy": null
+}
