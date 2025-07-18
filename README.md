@@ -4,7 +4,7 @@
 
 ---
 
-### ⚠️ IMPORTANT
+### IMPORTANT
 
 This tool enables you to efficiently — and in many cases, *over-efficiently* — make multiple requests per time interval.
 
@@ -31,7 +31,7 @@ Clone the repository:
 
 ```bash
 git clone https://github.com/Devon-du-Toit/Multi-Thread-Data-Scraper.git
-cd DataScraper
+cd Multi-Thread-Data-Scraper
 pip install -r requirements.txt
 ```
 
