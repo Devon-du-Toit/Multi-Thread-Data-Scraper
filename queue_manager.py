@@ -1,6 +1,6 @@
 import csv
 import os
-from urllib.parse import urlparse
+from urllib.parse import urlparse, urljoin
 from typing import List, Dict
 from utils.file_utils import build_output_path
 
@@ -12,27 +12,45 @@ def load_tasks(
     csv_path: str,
     output_root: str,
     structure: str,
+    url_prefix: str,
+    url_suffix: str,
+    id_column: str,
     max_tasks: int = None,
-    url_column: str = "source_url"
+    url_column: str = "source_url",
 ) -> List[Dict]:
     """
     Loads tasks from a CSV and returns a list of download task dicts.
     """
-    with open(csv_path, newline='') as csvfile:
+    with open(csv_path, newline='', encoding='utf-8-sig') as csvfile:
         reader = csv.DictReader(csvfile)
+        reader.fieldnames = [h.strip() for h in reader.fieldnames]
         tasks = []
         for i, row in enumerate(reader):
             if max_tasks is not None and i >= max_tasks:
                 break
 
-            # Extract URL and extension dynamically
-            url = row[url_column]
+            url_value = row.get(url_column, "").strip()
+            if not url_value:
+                print(f"Skipping row {i}: missing value in column '{url_column}'")
+                continue
+
+            url = urljoin(url_prefix, url_value) if url_prefix else url_value
+
+            if url_suffix:
+                url = urljoin(url, url_suffix)
+
             file_ext = get_file_extension(url) or ".bin"
-            filename = f"{row['id']}{file_ext}"
+            id_value = row.get(id_column, "").strip()
+            if not id_value:
+                print(f"Skipping row {i}: missing value in column '{id_column}'")
+                continue
+
+            filename = f"{id_value}{file_ext}"
+
             output_dir = build_output_path(output_root, structure, row)
 
             task = {
-                "id": row["id"],
+                "id": id_value,
                 "url": url,
                 "category": row.get("category", ""),
                 "date": row.get("date", ""),

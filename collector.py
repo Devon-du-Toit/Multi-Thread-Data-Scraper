@@ -14,21 +14,6 @@ logger = get_logger()
 def process_csv(csv_path: str, config: dict):
     logger.info(f"Processing CSV file: {csv_path}")
 
-    base_name = os.path.splitext(os.path.basename(csv_path))[0]
-    timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
-    csv_output_root = os.path.join(config["output_root"], f"{timestamp}_{base_name}")
-
-    tasks = load_tasks(
-        csv_path,
-        csv_output_root,
-        config["download_structure"],
-        config["max_downloads"],
-        config["url_column"]
-    )
-
-    for task in tasks:
-        ensure_dir_exists(task["output_dir"])
-
     timestamp = datetime.now().strftime("%Y-%m-%d_%H-%M")
     base_name = os.path.splitext(os.path.basename(csv_path))[0]
     csv_output_root = os.path.join(config["output_root"], f"{timestamp}_{base_name}")
@@ -37,6 +22,9 @@ def process_csv(csv_path: str, config: dict):
         csv_path,
         csv_output_root,
         config["download_structure"],
+        config["url_prefix"],
+        config["url_suffix"],
+        config["id_column"],
         config["max_downloads"],
         config["url_column"]
     )
