@@ -1,0 +1,15 @@
+# Ignore virtual environment
+.venv/
+
+# Ignore PyCharm project settings
+.idea/
+
+# Ignore Python cache and compiled files
+__pycache__/
+*.pyc
+
+# Ignore log files
+logs/*.log
+
+# Ignore example input file
+input/data_sources_EXAMPLE.csv
