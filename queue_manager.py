@@ -34,12 +34,15 @@ def load_tasks(
                 print(f"Skipping row {i}: missing value in column '{url_column}'")
                 continue
 
-            url = urljoin(url_prefix, url_value) if url_prefix else url_value
+            url = url_value
+
+            if url_prefix:
+                url = urljoin(url_prefix.rstrip('/') + '/', url.lstrip('/'))
 
             if url_suffix:
-                url = urljoin(url, url_suffix)
+                url = urljoin(url.rstrip('/') + '/', url_suffix.lstrip('/'))
 
-            file_ext = get_file_extension(url) or ".bin"
+            file_ext = get_file_extension(url) or ".jpg"
             id_value = row.get(id_column, "").strip()
             if not id_value:
                 print(f"Skipping row {i}: missing value in column '{id_column}'")

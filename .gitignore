@@ -11,5 +11,5 @@ __pycache__/
 # Ignore log files
 logs/*.log
 
-# Ignore example input file
-input/data_sources_EXAMPLE.csv
+# Ignore all input file
+input/*

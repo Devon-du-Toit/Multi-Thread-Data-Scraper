@@ -1,13 +1,11 @@
 {
-  "url_column": "ML Catalog Number",
-  "id_column": "eBird Checklist ID",
-  "url_prefix": "https://cdn.download.ams.birds.cornell.edu/api/v2/asset/",
-  "url_suffix": "/1200/",
+  "url_column": "image_url",
+  "id_column": "id",
+  "url_prefix": "",
+  "url_suffix": "",
   "output_root": "./data",
-  "csv_file_list": [
-    "./input/swee_waxbill.csv"
-  ],
-  "max_downloads": 5,
+  "csv_file_list": ["./input/example.csv"],
+  "max_downloads": 100,
   "download_structure": "flat",
   "timeout": 10,
   "retry_attempts": 3,
