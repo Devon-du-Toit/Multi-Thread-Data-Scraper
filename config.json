@@ -1,10 +1,11 @@
 {
   "url_column": "image_url",
   "id_column": "id",
+   "delimiter": "\t",
   "url_prefix": "",
   "url_suffix": "",
   "output_root": "./data",
-  "csv_file_list": ["./input/example.csv"],
+  "csv_file_list": ["./input/example.csv", "./input/exampl.txt"],
   "max_downloads": 100,
   "download_structure": "flat",
   "timeout": 10,

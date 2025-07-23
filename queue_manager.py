@@ -17,12 +17,13 @@ def load_tasks(
     id_column: str,
     max_tasks: int = None,
     url_column: str = "source_url",
+    delimiter: str = ","
 ) -> List[Dict]:
     """
     Loads tasks from a CSV and returns a list of download task dicts.
     """
     with open(csv_path, newline='', encoding='utf-8-sig') as csvfile:
-        reader = csv.DictReader(csvfile)
+        reader = csv.DictReader(csvfile, delimiter=delimiter)
         reader.fieldnames = [h.strip() for h in reader.fieldnames]
         tasks = []
         for i, row in enumerate(reader):

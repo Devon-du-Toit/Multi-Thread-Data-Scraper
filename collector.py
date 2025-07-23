@@ -26,7 +26,8 @@ def process_csv(csv_path: str, config: dict):
         config["url_suffix"],
         config["id_column"],
         config["max_downloads"],
-        config["url_column"]
+        config["url_column"],
+        config["delimiter"]
     )
 
     for task in tasks:

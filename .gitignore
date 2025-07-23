@@ -13,3 +13,7 @@ logs/*.log
 
 # Ignore all input file
 input/*
+
+config.json
+
+data/
